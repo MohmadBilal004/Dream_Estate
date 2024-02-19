@@ -1,0 +1,316 @@
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #080710;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover
+	
+}
+
+.background {
+    width: 430px;
+    height: 570px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+
+.background .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.shape:first-child {
+    background: linear-gradient(
+        #1845ad,
+        #23a2f6
+    );
+    left: -80px;
+    top: 40px;
+}
+
+.shape:last-child {
+    background: linear-gradient(
+        to right,
+        #ff512f,
+        #f09819
+    );
+    right: -240px;
+    bottom: -80px;
+}
+
+.form-container {
+   
+    height: 820px;
+    /* overflow-y: auto; Enable vertical scrolling if the content exceeds the container height */
+    position: relative;
+    margin-bottom: 1000px;
+}
+
+form {
+    margin-top: 200px;
+
+    height: 1600px;
+    width: 900px;
+    background-color: rgba(255, 255, 255, 0.13);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 80%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+}
+
+
+
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    /* outline: none;
+    border: none; */
+}
+form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+form input:not(#nav_check), #txtHouseType{
+    display: block;
+    height: 30px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;  
+}
+
+
+form #txtCity, #txtLocalArea{
+    display: block;
+    height: 30px;
+    width: 80%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+option {
+    background-color: #444; /* Set a darker background for the options */
+  }
+textarea{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/* Adjust the margin for the "City" input */
+ #txtBedroom ,#txtLandSize, #lblBedrooms, #lblLandSize, #DtYearBuilt, #lblYearBuilt{
+    margin-right: 60px; /* Add some margin to the bottom */
+}
+
+/* Adjust the margin for the "Division" input */
+ #txtBathroom, #txtUnit , #lblBathrooms, #lblUnit, #DtYearRenovated, #lblYearRenovated{
+    margin-left: 60px; /* Add some margin to the top */
+}
+#txtCity{margin-right: 90px;}
+#txtLocalArea {margin-left: 90px; }
+#lblCity{margin-right: 90px;}
+#lblLocalArea{margin-left: 90px; }
+
+
+::placeholder{
+    color: #e5e5e5;
+}
+button{
+    margin-top: 50px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+ 
+#chkNegotiable {
+    appearance: none; /* Remove default styles */
+    width: 15px; /* Adjust the width as needed */
+    height: 15px; /* Adjust the height as needed */
+    margin-right: 5px; /* Add some spacing between the checkbox and label */
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    position: relative;
+}
+
+#chkNegotiable:checked::before {
+    content: '\2713'; /* Unicode checkmark character */
+    font-size: 14px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#chkNegotiableCell {
+    text-align: center;
+}
+.social{
+  margin-top: 30px;
+  display: flex;
+}
+.social div{
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255,255,255,0.27);
+  color: #eaf0fb;
+  text-align: center;
+}
+.social div:hover{
+  background-color: rgba(255,255,255,0.47);
+}
+.social .fb{
+  margin-left: 25px;
+}
+.social i{
+  margin-right: 4px;
+}
+
+
+#file-container-1, #file-container-2{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+
+#file-container-1 input, #file-container-2 input {
+    margin-right: 10px;
+}
+ 
+
+#image-preview-container-wrapper-1 ,#image-preview-container-wrapper-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust as needed */
+    margin-bottom: 1px;
+}
+
+#image-preview-container-1,
+#image-preview-container-2,
+#image-preview-container-3,
+#image-preview-container-4 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1px;
+    /* background-color: rgba(255, 255, 255, 0.07); /* Set background color when no image is selected */
+}
+
+#image-preview-container-1 img,
+#image-preview-container-2 img,
+#image-preview-container-3 img,
+#image-preview-container-4 img {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 1px;
+}
+
+/* Hide the container when no image is selected */
+
+
+
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 768px) {
+    .background {
+        width: 100%;
+        height: 200px;
+    }
+
+    .background .shape {
+        height: 80px;
+        width: 80px;
+    }
+
+    .shape:first-child {
+        left: -40px;
+        top: -40px;
+    }
+
+    .shape:last-child {
+        right: -120px;
+        bottom: -40px;
+    }
+
+    .form-container {
+        margin-top: 20px;
+    }
+
+    form {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .background {
+        height: 150px;
+    }
+
+    .background .shape {
+        height: 60px;
+        width: 60px;
+    }
+
+    .shape:first-child {
+        left: -30px;
+        top: -30px;
+    }
+
+    .shape:last-child {
+        right: -90px;
+        bottom: -30px;
+    }
+
+    form {
+        width: 100%;
+        padding: 30px 15px;
+    }
+}
