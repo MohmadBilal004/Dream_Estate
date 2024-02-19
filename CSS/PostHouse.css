@@ -6,14 +6,38 @@
     box-sizing: border-box;
 }
 
-body {
+/* body {
     background-color: #080710;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover
 	
-}
+} */
 
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "montserrat";
+    background-image: linear-gradient(125deg,#2c3e50,#27ae60,#2980b9,#e74c3c,#8e44ad);
+    background-size: 400% 400%;
+    animation: bganimation 15s infinite;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  
+  
+  @keyframes bganimation {
+    0%{
+      background-position: 0% 50%;
+    }
+    50%{
+      background-position: 100% 50%;
+    }
+    100%{
+      background-position: 0% 50%;
+    }
+  } 
 .background {
     width: 430px;
     height: 570px;
@@ -23,7 +47,7 @@ body {
     top: 50%;
 }
 
-.background .shape {
+/* .background .shape {
     height: 200px;
     width: 200px;
     position: absolute;
@@ -47,7 +71,7 @@ body {
     );
     right: -240px;
     bottom: -80px;
-}
+} */
 
 .form-container {
    
@@ -59,7 +83,6 @@ body {
 
 form {
     margin-top: 200px;
-
     height: 1600px;
     width: 900px;
     background-color: rgba(255, 255, 255, 0.13);
@@ -69,6 +92,7 @@ form {
     left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(20px) saturate(200%); */
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
@@ -78,10 +102,10 @@ form {
 
 form *{
     font-family: 'Poppins',sans-serif;
-    color: #ffffff;
+    color: #000000;
     letter-spacing: 0.5px;
-    /* outline: none;
-    border: none; */
+    outline: none;
+    border: none;
 }
 form h3{
     font-size: 32px;
@@ -96,16 +120,24 @@ label{
     font-size: 16px;
     font-weight: 500;
 }
+
+form input,textarea {
+    border: none;
+    box-shadow: none;
+}
+
 form input:not(#nav_check), #txtHouseType{
     display: block;
     height: 30px;
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
+    background-color: rgba(255,255,255,0.3);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
     font-size: 14px;
     font-weight: 300;  
+    border: none;
+    box-shadow: none;
 }
 
 
@@ -113,12 +145,14 @@ form #txtCity, #txtLocalArea{
     display: block;
     height: 30px;
     width: 80%;
-    background-color: rgba(255,255,255,0.07);
+    background-color: rgba(255,255,255,0.3);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
     font-size: 14px;
     font-weight: 300;
+    border: none;
+    box-shadow: none;
 }
 
 option {
@@ -128,7 +162,7 @@ textarea{
     display: block;
     height: 50px;
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
+    background-color: rgba(255,255,255,0.3);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
@@ -151,7 +185,7 @@ textarea{
 #lblLocalArea{margin-left: 90px; }
 
 
-::placeholder{
+::placeholder, #txtCity, #txtLocalArea, #txtHouseType, #DtYearBuilt,#DtYearRenovated{
     color: #e5e5e5;
 }
 button{
@@ -164,6 +198,8 @@ button{
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
+    border: none;
+    box-shadow: none;
 }
 
  
