@@ -22,19 +22,18 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   var hamburger = document.querySelector(".hamburger2");
+  var logo = document.querySelector(".logo");
    document.querySelector("body").classList.add("active");
   // Check if the element with class "hamburger2" exists
-  if (hamburger) {
-      hamburger.addEventListener("click", function () {
-          document.querySelector("body").classList.toggle("active");
-          document.querySelector(".logo").classList.toggle("move-right");
-      });
-
-     
-   
-  } else {
-      console.error("Element with class 'hamburger2' not found");
-  }
+  if (hamburger && logo) {
+    hamburger.addEventListener("click", function () {
+        document.querySelector("body").classList.toggle("active");
+        logo.classList.toggle("move-right");
+        logo.classList.toggle("invisible"); // Add or remove the "invisible" class
+    });
+} else {
+    console.error("Element with class 'hamburger2' or '.logo' not found");
+}
 });
 
 
