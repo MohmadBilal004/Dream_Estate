@@ -10,13 +10,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="CSS/PostHouse.css">
-  <link rel="stylesheet" href="CSS/navigation.css">
+  <link rel="stylesheet" href="../CSS/PostHouse.css">
+  <link rel="stylesheet" href="../CSS/navigation.css">
 
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="app.js"></script>
+  <script src="../JS/SideBar.js"></script>
 </head>
 
 <body>
@@ -69,14 +69,14 @@
   <div class="sidebar">
     <div class="profile">
       <img
-        src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg"
+        src="../Images/logo.png"
         alt="profile_picture">
       <h3>PredictPricer</h3>
       <!-- <p>Designer</p> -->
     </div>
     <ul>
       <li>
-        <a href="#" >
+        <a href="../Home.html" >
           <span class="icon"><i class="fas fa-home"></i></span>
           <span class="item">Home</span>
         </a>
@@ -88,7 +88,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="ListHouse.php">
           <span class="icon"><i class="fas fa-user-friends"></i></span>
           <span class="item">List Properties</span>
         </a>
@@ -133,7 +133,7 @@
   
   
   <div class="form-container">
-  <form method="post" enctype="multipart/form-data" action="Handlers/PostHomeHandler.php">
+  <form method="post" enctype="multipart/form-data" action="PostHouse.php">
     <h3>Post ad of property</h3>
 
     <label for="txtTitle">Title</label>
@@ -324,4 +324,54 @@
 </script>
 </body>
 
+
+
+<?php
+             if(isset($_POST["btnPost"])){
+                    $title = $_POST["txtTitle"];
+                    $houseType = $_POST["txtHouseType"];
+                    $address = $_POST["txtAddress"];
+                    $city = $_POST["txtCity"];
+                    $localArea = $_POST["txtLocalArea"];
+                    $yearBuilt = $_POST["DtYearBuilt"];
+                    $yearRenovated = $_POST["DtYearRenovated"];
+                 
+                    $bedroomCount = $_POST["txtBedroom"];
+                    $bathroomCount = $_POST["txtBathroom"];
+                    $landSize = $_POST["txtLandSize"];
+                    $unit = $_POST["txtUnit"];
+                    $houseSize = $_POST["txtHouseSize"];
+                    $floorCount = $_POST["txtFloor"];
+                    $description = $_POST["txtDescription"];
+                    $price = $_POST["txtprice"];
+                    $negotiable = $_POST["chkNegotiable"];
+                     
+                    $image1 = "House/".basename($_FILES["file1"]["name"]);
+                    move_uploaded_file($_FILES["file1"]["tmp_name"],$image1);
+
+                    $image2 = "House/".basename($_FILES["file2"]["name"]);
+                    move_uploaded_file($_FILES["file2"]["tmp_name"],$image2);
+                  
+                    $image3 = "House/".basename($_FILES["file3"]["name"]);
+                    move_uploaded_file($_FILES["file3"]["tmp_name"],$image3);
+
+                    $image4 = "House/".basename($_FILES["file4"]["name"]);
+                    move_uploaded_file($_FILES["file4"]["tmp_name"],$image4);
+
+                    $con = mysqli_connect("localhost","root","","predictpricer");
+	 
+	                if(!$con) {
+	                	die("Sorry !!! we are facing technical issue"); 
+	                }
+
+                    $sql = "INSERT INTO `housetbl` (`RecID`, `Title`, `HouseType`, `Address`, `City`, `LocalArea`, `YearBuilt`, `YearRenovated`, `BedroomCount`, `BathroomCount`, `LandSize`, `Unit`, `HouseSize`, `FloorCount`, `Description`, `Price`, `negotiable`, `Image1`, `Image2`, `Image3`, `Image4`) 
+                    VALUES (NULL, '".$title."', '".$houseType."', '".$address."', '".$city."', '".$localArea."', '".$yearBuilt."', '".$yearRenovated."', '".$bedroomCount."', '".$bathroomCount."', '".$landSize."', '".$unit."', '".$houseSize."', '".$floorCount."', '".$description."', '".$price."', '".$negotiable."', '".$image1."', '".$image2."', '".$image3."', '".$image4."');";
+                    
+                    if(mysqli_query($con,$sql)){
+                        echo "Product Uploaded Successfully";
+                    }else{
+                        echo "Could not upload Please check the form again";
+                    }
+              }
+?>
 </html>

@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="CSS/PostLand.css">
-  <link rel="stylesheet" href="CSS/navigation.css">
+  <link rel="stylesheet" href="../CSS/PostLand.css">
+  <link rel="stylesheet" href="../CSS/navigation.css">
 
 
-  <script src="app.js"></script>
+  <script src="../JS/SideBar.js"></script>
 </head>
 
 <body>
@@ -64,13 +64,13 @@
   <div class="sidebar">
     <div class="profile">
       <img
-        src="Images/logo.png"  alt="profile_picture">
+        src="../Images/logo.png"  alt="profile_picture">
       <h3>PredictPricer</h3>
       <!-- <p>Designer</p> -->
     </div>
     <ul>
       <li>
-        <a href="#" >
+        <a href="../Home.html" >
           <span class="icon"><i class="fas fa-home"></i></span>
           <span class="item">Home</span>
         </a>
@@ -82,7 +82,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="ListHouse.php">
           <span class="icon"><i class="fas fa-user-friends"></i></span>
           <span class="item">List Properties</span>
         </a>
@@ -129,7 +129,7 @@
   
   
   <div class="form-container">
-  <form method="post" enctype="multipart/form-data" action="Handlers/PostLandHandler.php">
+  <form method="post" enctype="multipart/form-data" action="PostLand.php">
     <h3>Post ad of property</h3>
 
     <label for="txtTitle">Title</label>
@@ -301,5 +301,46 @@
 
   <!-- <script src="app.js"></script> -->
 </body>
+<?php
+             if(isset($_POST["btnPost"])){
+                    $title = $_POST["txtTitle"];
+                    $landtype = $_POST["txtlandType"];
+                    $address = $_POST["txtAddress"];
+                    $city = $_POST["txtCity"];
+                    $localArea = $_POST["txtLocalArea"];
+                   
+                    $landSize = $_POST["txtLandSize"];
+                    $unit = $_POST["txtUnit"];
+                    $description = $_POST["txtDescription"];
+                    $price = $_POST["txtprice"];
+                    $negotiable = $_POST["chkNegotiable"];
+                     
+                    $image1 = "Land/".basename($_FILES["file1"]["name"]);
+                    move_uploaded_file($_FILES["file1"]["tmp_name"],$image1);
 
+                    $image2 = "Land/".basename($_FILES["file2"]["name"]);
+                    move_uploaded_file($_FILES["file2"]["tmp_name"],$image2);
+                  
+                    $image3 = "Land/".basename($_FILES["file3"]["name"]);
+                    move_uploaded_file($_FILES["file3"]["tmp_name"],$image3);
+
+                    $image4 = "Land/".basename($_FILES["file4"]["name"]);
+                    move_uploaded_file($_FILES["file4"]["tmp_name"],$image4);
+
+                    $con = mysqli_connect("localhost","root","","predictpricer");
+	 
+	                if(!$con) {
+	                	die("Sorry !!! we are facing technical issue"); 
+	                }
+
+                    $sql = "INSERT INTO `landtbl` (`houseID`, `title`, `address`, `city`, `localArea`, `landSize`, `unit`, `description`, `price`, `negotiable`, `image1`, `image2`, `image3`, `image4`) 
+                    VALUES (NULL, '".$title."', '".$address."', '".$city."', '".$localArea."', '".$landSize."', '".$unit."', '".$description."', '".$price."', '".$negotiable."', '".$image1."', '".$image2."', '".$image3."', '".$image4."');";
+                    
+                    if(mysqli_query($con,$sql)){
+                        echo "Land details Uploaded Successfully";
+                    }else{
+                        echo "Could not upload Please check the form again";
+                    }
+              }
+?>
 </html>
