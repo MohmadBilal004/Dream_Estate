@@ -13,13 +13,55 @@ justify-content: center;
 align-items: center;
 background: #efefef;
 line-height: 1.5;
-background-image: url("Background1.jpg");
+
 background-repeat: no-repeat; 
 background-attachment: fixed; 
 background-size: cover;
+
+
+
+width: 100vw;
+height: 100vh;
+background: linear-gradient(to bottom right, #274B74 0%, #8233C5 50%, #E963FD 100%);
+font-family: "Montserrat", sans-serif;
+
 } 
 
 
+
+.container-SearchBar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: right;
+  padding:  15px 40px 15px 30px;
+  align-items: center;
+}
+
+input[type=text] {
+  position: relative;
+  padding: 15px 40px 15px 20px;
+  width: 20px;
+  color: #525252;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(to right, #FFFFFF 0%, #464747 #F9F9F9 100%);
+  transition: width 0.4s ease;
+  outline: none;
+}
+input[type=text]:focus {
+  width: 300px;
+}
+
+#search {
+  position: relative;
+  left: -37px;
+  color: #8233C5;
+}
 
 .wrap{
    display: block;
@@ -43,6 +85,7 @@ background-size: cover;
     height: 500px;
     align-items: center;
     flex-wrap: 0;
+    overflow: hidden;
 }
 
 .card:hover{
@@ -60,12 +103,15 @@ margin:10px 0;
 }
 .container{
     padding: 1px 10px;
+    justify-content: center;
 }
 
 .card p{
 margin: 0;
 padding: 0;
 margin-bottom: 10px;
+overflow: hidden; 
+
 }
 
 .card .btngrp{  
@@ -79,6 +125,7 @@ color: #fff;
 text-align: center;
 padding:1px 10px;
 border-radius: 5px;
+display: inline-block;
 }
 
 /* a{

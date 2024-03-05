@@ -33,6 +33,7 @@ integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8t
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="../JS/Sidebar.js"></script>
+  <script src="../JS/SearchBar.js"></script>
 </head>
 
 <body>
@@ -138,46 +139,71 @@ integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8t
       </ul>
     </div>
 
-<?php
-	$con = mysqli_connect("localhost","root","","predictpricer");
-	
-	 if(!$con) 
-	 {
-		die("Cannot connect with DB server"); 
-	 }
-	 
-	 $sql = "SELECT * FROM `housetbl`";
-	 
-	 $result = mysqli_query($con,$sql);	
-	
-	 if(mysqli_num_rows($result)>0)
-	 {
-		while($row = mysqli_fetch_assoc($result)) 
-		{
-			
-      echo "
-      <div class='wrap'>
-      <div class='card'>
-          <img src=".$row["Image1"].">
-          <div class='container'>
-          <h3>".$row['Title']."</h3> 
-          <p>".$row["HouseType"]."</p>
-          <p>Price:".$row["City"]."</p> 
-          <p>Quantity:".$row["LocalArea"]."</p>
-          <p>Quantity:".$row["Price"]."</p>
-          <table>
-          <tbody>
-       
-          </tbody>
-          </table>
-          </div>
-      </div>
-      </div>
-      ";
+    <div class="container-SearchBar">
+        <input placeholder='Search...' class='js-search' type="text">
+        <i id = "search" class="fa fa-search"></i>
+      </div>    
 
-		}
-	 }		
-	mysqli_close($con);		
+      <?php
+    $con = mysqli_connect("localhost","root","","predictpricer");
+
+    if(!$con) 
+    {
+        die("Cannot connect with DB server"); 
+    }
+
+    // Select data from housetbl
+    $sqlHouse = "SELECT * FROM `housetbl`";
+    $resultHouse = mysqli_query($con, $sqlHouse);
+
+    if(!$resultHouse) {
+        die("Error in SQL query for housetbl: " . mysqli_error($con));
+    }
+
+    // Select data from landtbl
+    $sqlLand = "SELECT * FROM `landtbl`";
+    $resultLand = mysqli_query($con, $sqlLand);
+
+    if(!$resultLand) {
+        die("Error in SQL query for landtbl: " . mysqli_error($con));
+    }
+
+    // Combine the results
+    $combinedResults = array();
+
+    while($rowHouse = mysqli_fetch_assoc($resultHouse)) {
+        $combinedResults[] = $rowHouse;
+    }
+
+    while($rowLand = mysqli_fetch_assoc($resultLand)) {
+        $combinedResults[] = $rowLand;
+    }
+
+    // Process the combined results as needed
+    foreach($combinedResults as $row) {
+        echo "
+            <div class='wrap'>
+            <div class='card'>
+                <img src=".$row["Image1"].">
+                <div class='container'>
+                <h3>".$row['Title']."</h3> 
+                <p>".$row["PropertyType"]."</p>
+                <p>City: ".$row["City"]."</p> 
+                <p>Local Area: ".$row["LocalArea"]."</p>
+                <p>Price: ".$row["Price"]."</p>
+                <table>
+                <tbody>
+             
+                </tbody>
+                </table>
+                </div>
+            </div>
+            </div>
+        ";
+    }
+
+    mysqli_close($con);
 ?>
+
 </body>
 </html>
