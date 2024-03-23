@@ -1,3 +1,16 @@
+
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION["userName"])) {
+    header("Location: ../ValidationPage.html");
+    exit();
+}
+
+$user_id = $_SESSION["userName"];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,16 +32,13 @@
  
   <header>
     <div class = "move-right">
-      <div class="logo">PredictPricer</div>
+      <div class="logo">Dream Estate</div>
     </div>  
       <input type="checkbox" id="nav_check" hidden>
       <nav>
           <ul>
               <li>
                   <a href="">Home</a>
-              </li>
-              <li>
-                  <a href="">Portfolio</a>
               </li>
               <li>
                   <a href="">Blog</a>
@@ -38,6 +48,9 @@
               </li>
               <li>
                   <a href="">About</a>
+              </li>
+              <li>
+                  <a href="">Log Out</a>
               </li>
           </ul>
       </nav>
@@ -49,76 +62,66 @@
   </header>
 
 
-  
-<div class="wrapper">
-  <div class="section">
-    <div class="top_navbar">
-      <div class="hamburger2">
-        <a href="#">
-          <i class="fas fa-bars"></i>
-        </a>
+  <div class="wrapper">
+    <div class="section">
+      <div class="top_navbar">
+        <div class="hamburger2">
+          <a href="#">
+            <i class="fas fa-bars"></i>
+          </a>
+        </div>
       </div>
+    
     </div>
-  
-  </div>
-  <div class="sidebar">
-    <div class="profile">
-      <img
-        src="../Images/logo.png"  alt="profile_picture">
-      <h3>PredictPricer</h3>
-      <!-- <p>Designer</p> -->
+    <div class="sidebar">
+      <div class="profile">
+        <img
+          src="../Images/logo.png"
+          alt="profile_picture">
+        <h3>Dream Estate</h3>
+        <!-- <p>Designer</p> -->
+      </div>
+      <ul>
+        <li>
+          <a href="Home.php" >
+            <span class="icon"><i class="fas fa-home"></i></span>
+            <span class="item">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><i class="fas fa-desktop"></i></span>
+            <span class="item">Price Prediction</span>
+          </a>
+        </li>
+        <li>
+          <a href="ListHouse.php">
+            <span class="icon"><i class="fas fa-list"></i></span>
+            <span class="item">List Properties</span>
+          </a>
+        </li>
+        <li>
+          <a href="Selection.php" class="active">
+            <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+            <span class="item">Sell Property</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="icon"><i class="fas fa-database"></i></span>
+            <span class="item">About Us</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <span class="icon"><i class="fas fa-user"></i></span>
+            <span class="item">User Profile</span>
+          </a>
+        </li>
+      </ul>
     </div>
-    <ul>
-      <li>
-        <a href="../Home.html" >
-          <span class="icon"><i class="fas fa-home"></i></span>
-          <span class="item">Home</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon"><i class="fas fa-desktop"></i></span>
-          <span class="item">Price Prediction</span>
-        </a>
-      </li>
-      <li>
-        <a href="ListHouse.php">
-          <span class="icon"><i class="fas fa-user-friends"></i></span>
-          <span class="item">List Properties</span>
-        </a>
-      </li>
-      <li>
-        <a href="Selection.html"  class="active">
-          <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-          <span class="item">Sell Property</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon"><i class="fas fa-database"></i></span>
-          <span class="item">About Us</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon"><i class="fas fa-chart-line"></i></span>
-          <span class="item">Reports</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon"><i class="fas fa-user-shield"></i></span>
-          <span class="item">Admin</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon"><i class="fas fa-cog"></i></span>
-          <span class="item">Settings</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+
 
 
   
@@ -130,7 +133,7 @@
   
   <div class="form-container">
   <form method="post" enctype="multipart/form-data" action="PostLand.php">
-    <h3>Post ad of property</h3>
+    <h3>Post advertisment of Your Land</h3>
 
     <label for="txtTitle">Title</label>
     <input type="text" placeholder="Title" id="txtTitle" name = "txtTitle">
@@ -187,11 +190,18 @@
       <tbody>
        
         <tr>
-          <td> <label  id = "lblLandSize" for="txtLandSize">Land Size</label>
-            <input type="number" placeholder="Area of the Land" id="txtLandSize" name = "txtLandSize"></td>
+          <td>
+             <label  id = "lblLandSize" for="txtLandSize">Land Size</label>
+            <input type="floatval" placeholder="Area of the Land" id="txtLandSize" name = "txtLandSize">
+          </td>
         
-        <td><label id = "lblUnit" for="txtUnit">Units</label>
-          <input type="number" placeholder="Unit measured" id="txtUnit" name = "txtUnit"></td>
+        <td>
+          <label id = "lblUnit" for="txtUnit">Units</label>
+          <select id="txtUnit" name="txtUnit">
+              <option value="Perches">Perches</option>
+              <option value="Acres">Acres</option>
+          </select>
+        </td>
         </tr>
   
   
@@ -257,7 +267,8 @@
                     $description = $_POST["txtDescription"];
                     $price = $_POST["txtprice"];
                     $negotiable = $_POST["chkNegotiable"];
-                     
+                    $user_id = $_SESSION["userName"];
+
                     $image1 = "Land/".basename($_FILES["file1"]["name"]);
                     move_uploaded_file($_FILES["file1"]["tmp_name"],$image1);
 
@@ -276,8 +287,8 @@
 	                	die("Sorry !!! we are facing technical issue"); 
 	                }
 
-                    $sql = "INSERT INTO `landtbl`(`LandID`, `Title`, `PropertyType`, `address`, `city`, `localArea`, `landSize`, `unit`, `description`, `price`, `negotiable`, `Image1`, `Image2`, `Image3`, `Image4`) VALUES 
-                    (NULL,'".$title."','".$landtype."','".$address."','".$city."','".$localArea."','".$landSize."','".$unit."','".$description."','".$price."','".$negotiable."','".$image1."','".$image2."','".$image3."','".$image4."')";
+                    $sql = "INSERT INTO `landtbl`(`LandID`, `Title`, `PropertyType`, `address`, `City`, `LocalArea`, `landSize`, `unit`, `description`, `Price`, `negotiable`, `email`, `Image1`, `Image2`, `Image3`, `Image4`) 
+                    VALUES (NULL,'".$title."','".$landtype."','".$address."','".$city."','".$localArea."','".$landSize."','".$unit."','".$description."','".$price."','".$negotiable."','".$user_id."','".$image1."','".$image2."','".$image3."','".$image4."')";
                     
                     if(mysqli_query($con,$sql)){
                       echo "<p align='center' style='color: red; font-weight: bold;'>Land details Uploaded Successfully.</p>";

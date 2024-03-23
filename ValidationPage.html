@@ -21,9 +21,42 @@
         <input type="text" placeholder="Second name" id = "txtlname" name = "txtlname" />
         <input type="email" placeholder="Email" id = "txtemail" name = "txtemail"/>
         <input type="number" placeholder="Phone Number" id = "txtphone" name = "txtphone"/>
+        <select name="txtLocation" id="txtLocation" aria-placeholder="Select your location">
+          <option value="Colombo">Colombo</option>
+          <option value="Kandy">Kandy</option>
+          <option value="Galle">Galle</option>
+          <option value="Ampara">Ampara</option>
+          <option value="Anuradhapura">Anuradhapura</option>
+          <option value="Badulla">Badulla</option>
+          <option value="Batticaloa">Batticaloa</option>
+          <option value="Gampaha">Gampaha</option>
+          <option value="Hambantota">Hambantota</option>
+          <option value="Jaffna">Jaffna</option>
+          <option value="Kalutara">Kalutara</option>
+          <option value="Kegalle">Kegalle</option>
+          <option value="Kilinochchi">Kilinochchi</option>
+          <option value="Kurunegala">Kurunegala</option>
+          <option value="Mannar">Mannar</option>
+          <option value="Matale">Matale</option>
+          <option value="Matara">Matara</option>
+          <option value="Monaragala">Monaragala</option>
+          <option value="Mullativu">Mullativu</option>
+          <option value="Nuwara Eliya">Nuwara Eliya</option>
+          <option value="Polonnaruwa">Polonnaruwa</option>
+          <option value="Puttalam">Puttalam</option>
+          <option value="Ratnapura">Ratnapura</option>
+          <option value="Trincomalee">Trincomalee</option>
+          <option value="Vavuniya">Vavuniya</option>
+        </select>
+
+        <select name="txtGender" id="txtGender">
+          <option value="male">Male</option>
+          <option value="female">Female</option> 
+        </select>
+       
         <input type="password" placeholder="Password" id = "txtpassword1" name="txtpassword1" />
         <input type="password" placeholder="Confirm Password" id = "txtconfirmpassword" name="txtconfirmpassword" />
-        <button type="submit" id = "Submitbtn"  name = "Submitbtn" onclick="matchPassword()">Sign Up</button>
+        <button type="submit" id = "Submitbtn"  name = "Submitbtn" onclick="matchPassword()">Register</button>
       </form>
     </div>
     <div class="form-container sign-in-container">
@@ -51,13 +84,13 @@
         <div class="overlay-panel overlay-right">
           <h1>Hello, Friend!</h1>
           <p>Enter your personal details and start journey with us</p>
-          <button class="ghost" id="signUp">Sign Up</button>
+          <button class="ghost" id="signUp">Register</button>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="Validation.js"></script>
+  <script src="JS/Validation.js"></script>
 </body>
 
 </html>

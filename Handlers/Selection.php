@@ -1,3 +1,10 @@
+<?php session_start();
+if(!isset($_SESSION["userName"]))
+{
+	 header('Location:../ValidationPage.html');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,16 +46,13 @@
 
     <header>
         <div class = "move-right">
-          <div class="logo">PredictPricer</div>
+          <div class="logo">Dream Estate</div>
         </div>  
           <input type="checkbox" id="nav_check" hidden>
           <nav>
               <ul>
                   <li>
                       <a href="">Home</a>
-                  </li>
-                  <li>
-                      <a href="">Portfolio</a>
                   </li>
                   <li>
                       <a href="">Blog</a>
@@ -59,6 +63,9 @@
                   <li>
                       <a href="">About</a>
                   </li>
+                  <li>
+                    <a href="">Log Out</a>
+                </li>
               </ul>
           </nav>
           <label for="nav_check" class="hamburger">
@@ -69,77 +76,65 @@
       </header>
   
   
-      
-    <div class="wrapper">
-      <div class="section">
-        <div class="top_navbar">
-          <div class="hamburger2">
-            <a href="#">
-              <i class="fas fa-bars"></i>
-            </a>
+      <div class="wrapper">
+        <div class="section">
+          <div class="top_navbar">
+            <div class="hamburger2">
+              <a href="#">
+                <i class="fas fa-bars"></i>
+              </a>
+            </div>
           </div>
+        
         </div>
-      
-      </div>
-      <div class="sidebar">
-        <div class="profile">
-          <img
-            src="../Images/logo.png"
-            alt="profile_picture">
-          <h3>PredictPricer</h3>
-          <!-- <p>Designer</p> -->
+        <div class="sidebar">
+          <div class="profile">
+            <img
+              src="../Images/logo.png"
+              alt="profile_picture">
+            <h3>Dream Estate</h3>
+            <!-- <p>Designer</p> -->
+          </div>
+          <ul>
+            <li>
+              <a href="Home.php" >
+                <span class="icon"><i class="fas fa-home"></i></span>
+                <span class="item">Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="icon"><i class="fas fa-desktop"></i></span>
+                <span class="item">Price Prediction</span>
+              </a>
+            </li>
+            <li>
+              <a href="ListHouse.php">
+                <span class="icon"><i class="fas fa-list"></i></span>
+                <span class="item">List Properties</span>
+              </a>
+            </li>
+            <li>
+              <a href="Selection.php" class="active">
+                <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+                <span class="item">Sell Property</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="icon"><i class="fas fa-database"></i></span>
+                <span class="item">About Us</span>
+              </a>
+            </li>
+    
+            <li>
+              <a href="#">
+                <span class="icon"><i class="fas fa-user"></i></span>
+                <span class="item">User Profile</span>
+              </a>
+            </li>
+          </ul>
         </div>
-        <ul>
-          <li>
-            <a href="#" >
-              <span class="icon"><i class="fas fa-home"></i></span>
-              <span class="item">Home</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="icon"><i class="fas fa-desktop"></i></span>
-              <span class="item">Price Prediction</span>
-            </a>
-          </li>
-          <li>
-            <a href="ListHouse.php">
-              <span class="icon"><i class="fas fa-user-friends"></i></span>
-              <span class="item">List Properties</span>
-            </a>
-          </li>
-          <li>
-            <a href="#"  class="active">
-              <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-              <span class="item">Sell Property</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="icon"><i class="fas fa-database"></i></span>
-              <span class="item">About Us</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="icon"><i class="fas fa-chart-line"></i></span>
-              <span class="item">Reports</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="icon"><i class="fas fa-user-shield"></i></span>
-              <span class="item">Admin</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="icon"><i class="fas fa-cog"></i></span>
-              <span class="item">Settings</span>
-            </a>
-          </li>
-        </ul>
-      </div>
 
 
       <!-- service section -->

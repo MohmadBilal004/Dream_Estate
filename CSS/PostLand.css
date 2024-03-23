@@ -30,12 +30,6 @@ body{
       background-position: 0% 50%;
     }
   } 
-/* body {
-    background-color: #080710;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}*/
 
 .background {
     width: 430px;
@@ -45,32 +39,7 @@ body{
     left: 50%;
     top: 50%;
 }
-/*
-.background .shape {
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
-}
 
-.shape:first-child {
-    background: linear-gradient(
-        #1845ad,
-        #23a2f6
-    );
-    left: -80px;
-    top: 40px;
-}
-
-.shape:last-child {
-    background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-    );
-    right: -240px;
-    bottom: -80px;
-} */
 
 .form-container {
    
@@ -132,7 +101,7 @@ form input:not(#nav_check), #txtlandType{
 }
 
 
-form #txtCity, #txtLocalArea{
+form #txtCity, #txtLocalArea, #txtUnit{
     display: block;
     height: 30px;
     width: 80%;
@@ -147,7 +116,7 @@ form #txtCity, #txtLocalArea{
 option {
     background-color: #444; /* Set a darker background for the options */
   }
-textarea{
+textarea, #txtCity{
     display: block;
     height: 50px;
     width: 100%;

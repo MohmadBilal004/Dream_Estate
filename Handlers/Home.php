@@ -1,3 +1,10 @@
+<?php session_start();
+if(!isset($_SESSION["userName"]))
+{
+	 header('Location:../ValidationPage.html');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,10 +35,10 @@
   integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="CSS/style.css"/>
+  <link rel="stylesheet" href="../CSS/style.css"/>
   
-  <link rel="stylesheet" href="CSS/Home.css">
-  <link rel="stylesheet" href="CSS/navigation.css">
+  <link rel="stylesheet" href="../CSS/Home.css">
+  <link rel="stylesheet" href="../CSS/navigation.css">
   <!-- responsive style -->
 
 
@@ -42,10 +49,10 @@
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="JS/scrollIt.min.js"></script>
-  <script src="JS/wow.min.js"></script>
-  <script src="JS/scripts.js"></script>
-  <script src="JS/Sidebar.js"></script>
+  <script src="../JS/scrollIt.min.js"></script>
+  <script src="../JS/wow.min.js"></script>
+  <script src="../JS/scripts.js"></script>
+  <script src="../JS/Sidebar.js"></script>
   
 
 
@@ -102,14 +109,14 @@
     <div class="sidebar">
       <div class="profile">
         <img
-          src="Images/logo.png"
+          src="../Images/logo.png"
           alt="profile_picture">
         <h3>Dream Estate</h3>
         <!-- <p>Designer</p> -->
       </div>
       <ul>
         <li>
-          <a href="#" class="active">
+          <a href="Home.php" class="active">
             <span class="icon"><i class="fas fa-home"></i></span>
             <span class="item">Home</span>
           </a>
@@ -121,13 +128,13 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="ListHouse.php">
             <span class="icon"><i class="fas fa-list"></i></span>
             <span class="item">List Properties</span>
           </a>
         </li>
         <li>
-          <a href="Selection.html">
+          <a href="Selection.php">
             <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
             <span class="item">Sell Property</span>
           </a>
@@ -140,7 +147,7 @@
         </li>
 
         <li>
-          <a href="#">
+          <a href="UserProfile.php">
             <span class="icon"><i class="fas fa-user"></i></span>
             <span class="item">User Profile</span>
           </a>
@@ -260,7 +267,7 @@
       <div class="col-md-6 ">
         <div class="box ">
           <div class="img-box">
-            <img src="images/listProperty.gif" alt="">
+            <img src="../Images/listProperty.gif" alt="">
           </div>
           <div class="detail-box">
             <h5>
@@ -275,7 +282,7 @@
       <div class="col-md-6 ">
         <div class="box ">
           <div class="img-box">
-            <img src="images/Property Valuation.gif" alt="">
+            <img src="../Images/Property Valuation.gif" alt="">
           </div>
           <div class="detail-box">
             <h5>
@@ -290,7 +297,7 @@
       <div class="col-md-6 ">
         <div class="box ">
           <div class="img-box">
-            <img src="images/PricePrediction.gif" alt="">
+            <img src="../Images/PricePrediction.gif" alt="">
           </div>
           <div class="detail-box">
             <h5>
@@ -306,7 +313,7 @@
       <div class="col-md-6 ">
         <div class="box ">
           <div class="img-box">
-            <img src="images/Community.png" alt="">
+            <img src="../Images/Community.png" alt="">
           </div>
           <div class="detail-box">
             <h5>

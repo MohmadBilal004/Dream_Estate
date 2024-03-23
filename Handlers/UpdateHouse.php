@@ -1,15 +1,3 @@
-
-<?php
-session_start();
-
-// Check if the user is logged in
-if (!isset($_SESSION["userName"])) {
-    header("Location: ../ValidationPage.html");
-    exit();
-}
-
-$user_id = $_SESSION["userName"];
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,7 +75,7 @@ $user_id = $_SESSION["userName"];
       </div>
       <ul>
         <li>
-          <a href="Home.php" >
+          <a href="#" class="active">
             <span class="icon"><i class="fas fa-home"></i></span>
             <span class="item">Home</span>
           </a>
@@ -99,13 +87,13 @@ $user_id = $_SESSION["userName"];
           </a>
         </li>
         <li>
-          <a href="ListHouse.php">
+          <a href="#">
             <span class="icon"><i class="fas fa-list"></i></span>
             <span class="item">List Properties</span>
           </a>
         </li>
         <li>
-          <a href="Selection.php" class="active">
+          <a href="Selection.html">
             <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
             <span class="item">Sell Property</span>
           </a>
@@ -289,7 +277,7 @@ $user_id = $_SESSION["userName"];
                     $description = $_POST["txtDescription"];
                     $price = $_POST["txtprice"];
                     $negotiable = $_POST["chkNegotiable"];
-                    $user_id = $_SESSION["userName"];
+                     
                     $image1 = "House/".basename($_FILES["file1"]["name"]);
                     move_uploaded_file($_FILES["file1"]["tmp_name"],$image1);
 
@@ -308,8 +296,8 @@ $user_id = $_SESSION["userName"];
 	                	die("Sorry !!! we are facing technical issue"); 
 	                }
 
-                    $sql = "INSERT INTO `housetbl`(`HouseID`, `Title`, `PropertyType`, `Address`, `City`, `LocalArea`, `YearBuilt`, `YearRenovated`, `BedroomCount`, `BathroomCount`, `LandSize`, `Unit`, `HouseSize`, `FloorCount`, `Description`, `Price`, `negotiable`, `email`, `Image1`, `Image2`, `Image3`, `Image4`) VALUES 
-                    (NULL,'".$title."','".$houseType."','".$address."','".$city."','".$localArea."','".$yearBuilt."','".$yearRenovated."','".$bedroomCount."','".$bathroomCount."','".$landSize."','".$unit."','".$houseSize."','".$floorCount."','".$description."','".$price."','".$negotiable."','".$user_id."','".$image1."','".$image2."','".$image3."','".$image4."')";
+                    $sql = "INSERT INTO `housetbl`(`HouseID`, `Title`, `PropertyType`, `Address`, `City`, `LocalArea`, `YearBuilt`, `YearRenovated`, `BedroomCount`, `BathroomCount`, `LandSize`, `Unit`, `HouseSize`, `FloorCount`, `Description`, `Price`, `negotiable`, `Image1`, `Image2`, `Image3`, `Image4`) VALUES 
+                    (NULL,'".$title."','".$houseType."','".$address."','".$city."','".$localArea."','".$yearBuilt."','".$yearRenovated."','".$bedroomCount."','".$bathroomCount."','".$landSize."','".$unit."','".$houseSize."','".$floorCount."','".$description."','".$price."','".$negotiable."','".$image1."','".$image2."','".$image3."','".$image4."')";
                     
                     if(mysqli_query($con,$sql)){
                       echo "<p align='center' style='color: red; font-weight: bold;'>House details Uploaded Successfully.</p>";

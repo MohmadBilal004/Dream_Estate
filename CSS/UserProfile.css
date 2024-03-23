@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-details {
+    flex-basis: 45%; /* Adjust as needed */
+}
+
+.user-details p {
+    margin: 10px 0; /* Adjust line spacing here */
+    line-height: 1.5; /* Adjust line height here */
+}
+
+.detail {
+    float: left;
+    width: 40%;
+    text-align: right;
+    font-weight: bold;
+}
+
+.value {
+    float: left;
+    width: 55%;
+}
+
+/* Add more styling as needed */

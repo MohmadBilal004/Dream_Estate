@@ -94,6 +94,7 @@ input[type=text]:focus {
 .card img{
   margin-top: 10px;
 max-width: 300px;
+max-height: 200px;
 }
 
 .card h3{

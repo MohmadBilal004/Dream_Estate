@@ -17,15 +17,11 @@ if (isset($_POST["loginbtn"])) {
 
     if ($result && mysqli_num_rows($result) > 0) {
         // Create session
-        // $_SESSION["userName"] = $userName;
-        // if ($userName == "mohmadbilal004@gmail.com") {
-        //     header('Location:Home.php');
-        // } else {
-        //     header('Location:Home2.php');
-        // }
-        header('Location:Home.html');
+        $_SESSION["userName"] = $userName; 
+            header('Location:Home.php');
+       
     } else {
-        header('Location:login.php');
+        header('Location:../Validation.html');
         echo "Please enter correct username and password";
     }
 }

@@ -4,6 +4,8 @@ if(isset($_POST["Submitbtn"])){
     $Lname = $_POST["txtlname"];
     $Email = $_POST["txtemail"];
     $Number = $_POST["txtphone"];
+    $Location = $_POST["txtLocation"];
+    $Gender = $_POST["txtGender"];
     $password = $_POST["txtpassword1"];
     $confirm = $_POST["txtconfirmpassword"];
 }
@@ -14,9 +16,12 @@ if($password ==$confirm ){
         die("Cannot connect to Database Server"); 
     }
 
-    $sql = "INSERT INTO `users`(`firstName`, `lastName`, `email`, `phone`, `password`) VALUES ('".$Fname."','".$Lname."','".$Email."','".$Number."','".$password."');"; 
+    $sql = "INSERT INTO `users`(`firstName`, `lastName`, `email`, `phone`, `location`, `gender`, `password`) VALUES ('".$Fname."','".$Lname."','".$Email."','".$Number."','".$Location."','".$Gender."','".$password."')"; 
     mysqli_query($con, $sql);
 
-    header('Location:Home.html');
+    $_SESSION["userName"] = $Email; // Assuming email is unique and suitable for session
+    header('Location: Home.php');
+}else{
+    echo "Passwords do not match.";
 }
 ?>
