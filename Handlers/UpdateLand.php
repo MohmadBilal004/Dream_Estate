@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -11,13 +10,36 @@ if (!isset($_SESSION["userName"])) {
 $user_id = $_SESSION["userName"];
 ?>
 
+
+<?php
+
+
+if(isset($_GET["id"]) && isset($_GET["type"])) {
+  $propertyID = $_GET["id"];
+  $propertyType = $_GET["type"];
+
+if (in_array($propertyType, ["Single-Family Homes", "Apartment", "Mansions", "Colonial Style Homes"])) {
+  header("Location:UpdateHouse.php?id=$propertyID");
+  exit();
+
+} elseif (in_array($propertyType, ["Agricultural Land", "Residential Land", "Commercial Land", "Industrial Land", "Recreational Land"])) {
+  header("Location:UpdateLand.php?id=$propertyID");
+  exit();
+} else {
+  echo "Invalid Property Type";
+  exit(); // Exit the script if the PropertyType is not recognized
+}
+}
+            
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Post Land for sale</title>
+  <title>Update Land Details</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -130,16 +152,40 @@ $user_id = $_SESSION["userName"];
     <div class="shape"></div>
   </div>
   
+  <?php
+  $con = mysqli_connect("localhost","root","","predictpricer");
+	 
+  if(!$con) {
+    die("Sorry !!! we are facing technical issue"); 
+  }
+  $sql = "SELECT * FROM `landtbl` WHERE `PropertyID`=".$_GET["id"]."";
+
+  $result = mysqli_query($con, $sql);
+
+  if ($result === false) {
+      die("Error: " . mysqli_error($con));
+  }
+  
+  if (mysqli_num_rows($result) > 0) {
+      $row = mysqli_fetch_assoc($result);
+      // Your further code goes here
+  } else {
+      echo "No results found.";
+  }
+  
+
+  ?>
+
   
   <div class="form-container">
-  <form method="post" enctype="multipart/form-data" action="PostLand.php">
-    <h3>Post advertisment of Your Land</h3>
+  <form method="post" enctype="multipart/form-data" action="UpdateLand.php?id=<?php echo $_GET["id"]; ?>">
+    <h3>Update Land details</h3>
 
     <label for="txtTitle">Title</label>
-    <input type="text" placeholder="Title" id="txtTitle" name = "txtTitle">
+    <input type="text" placeholder="Title" id="txtTitle" name = "txtTitle" value = "<?php echo $row["Title"]; ?>" >
 
     <label id = "lbllandType" for="txtlandType">Select Land Type:</label>
-    <select id="txtlandType" name="txtlandType">
+    <select id="txtlandType" name="txtlandType" value = "<?php echo $row["PropertyType"]; ?>">
       <option value="Agricultural Land">Agricultural Land</option>
       <option value="Residential Land">Residential Land</option>
       <option value="Commercial Land">Commercial Land</option>
@@ -148,7 +194,7 @@ $user_id = $_SESSION["userName"];
     </select>
 
     <label for="txtAddress">Address</label>
-    <textarea id = "txtAddress" name = "txtAddress" rows="4" cols="50" placeholder="Enter street, Land number and postal code"></textarea>
+    <input type="text" id = "txtAddress" name = "txtAddress" rows="4" cols="50" placeholder="Enter street, Land number and postal code"  value="<?php echo $row["address"]; ?>">
 
 
     <table>
@@ -164,22 +210,6 @@ $user_id = $_SESSION["userName"];
           <td>
             <label id="lblLocalArea" for="txtLocalArea">Select the Local Area</label>
             <select id="txtLocalArea" name="txtLocalArea">
-              <!-- <option value="Colombo 1 Fort">Colombo 1 Fort (Kotuwa)</option>
-              <option value="Colombo 2 Slave Island">Colombo 2 Slave Island</option>
-              <option value="Colombo 3">Colombo 3 Colpetty (Kollupitiya)</option>
-              <option value="Colombo 4">Colombo 4 (Bambalapitiya)</option>
-              <option value="Colombo 5">Colombo 5 (Narahenpita)</option>
-              <option value="Colombo 6">Colombo 6 (Wellawatta)</option>
-              <option value="Colombo 7">Colombo 7 Cinnamon Garden (Kuruwita Uyana)</option>
-              <option value="Colombo 8">Colombo 8 (Borella)</option>
-              <option value="Colombo 9">Colombo 9 (Dematagoda)</option>
-              <option value="Colombo 10">Colombo 10 (Maradana)</option>
-              <option value="Colombo 11">Colombo 11 Pettah (Pitakotuwa)</option>
-              <option value="Colombo 12">Colombo 12 Hulftsdorp (Aluthkade)</option>
-              <option value="Colombo 13">Colombo 13: Bloemendhal (Kotahena & Kochchikade)</option>
-              <option value="Colombo 14">Colombo 14 (Grandpass)</option>
-              <option value="Colombo 15">Colombo 15 (Mattakkuliya, Modara, Mutwal, Madampitiya)</option> -->
-              <!-- Add more local areas as needed -->
             </select>
           </td>
         </tr>
@@ -192,7 +222,7 @@ $user_id = $_SESSION["userName"];
         <tr>
           <td>
              <label  id = "lblLandSize" for="txtLandSize">Land Size</label>
-            <input type="floatval" placeholder="Area of the Land" id="txtLandSize" name = "txtLandSize">
+            <input type="floatval" placeholder="Area of the Land" id="txtLandSize" name = "txtLandSize"  value = "<?php echo $row["landSize"]; ?>">
           </td>
         
         <td>
@@ -211,11 +241,11 @@ $user_id = $_SESSION["userName"];
    
 
     <label for="txtDescription">Description</label>
-   <textarea id = "txtDescription" name = "txtDescription" rows="4" cols="50" placeholder="More details can make buyers interested" ></textarea>
+   <input type="text" id = "txtDescription" name = "txtDescription" rows="4" cols="50" placeholder="More details can make buyers interested"value = "<?php echo $row["description"]; ?>" >
 
 
     <label for="txtprice">Price (LKR)</label>
-    <input type="number" id = "txtprice" name = "txtprice" placeholder="Price for the property" ></textarea>
+    <input type="number" id = "txtprice" name = "txtprice" placeholder="Price for the property" value = "<?php echo $row["Price"]; ?>">
   
 
     <table>
@@ -253,9 +283,17 @@ $user_id = $_SESSION["userName"];
   
 
  
-    <button id = "btnPost" name = "btnPost">Post Ad</button>
+    <button id = "btnSubmit" name = "btnSubmit">Post Ad</button>
     <?php
-             if(isset($_POST["btnPost"])){
+           
+           mysqli_close($con);
+        ?>
+
+<?php
+    $propertyID = $_GET["id"];
+
+
+             if(isset($_POST["btnSubmit"])){
                     $title = $_POST["txtTitle"];
                     $landtype = $_POST["txtlandType"];
                     $address = $_POST["txtAddress"];
@@ -287,14 +325,13 @@ $user_id = $_SESSION["userName"];
 	                	die("Sorry !!! we are facing technical issue"); 
 	                }
 
-                    $sql = "INSERT INTO `landtbl`(`PropertyID`, `Title`, `PropertyType`, `address`, `City`, `LocalArea`, `landSize`, `unit`, `description`, `Price`, `negotiable`, `email`, `Image1`, `Image2`, `Image3`, `Image4`) 
-                    VALUES (NULL,'".$title."','".$landtype."','".$address."','".$city."','".$localArea."','".$landSize."','".$unit."','".$description."','".$price."','".$negotiable."','".$user_id."','".$image1."','".$image2."','".$image3."','".$image4."')";
+                    $sql = "UPDATE `landtbl` SET `Title`='".$title."',`PropertyType`='".$landtype."',`address`='".$address."',`City`='".$city."',`LocalArea`='".$localArea."',`landSize`='".$landSize."',`unit`='".$unit."',`description`='".$description."',`Price`='".$price."',`negotiable`='".$negotiable."',`email`='".$user_id."',`Image1`='".$image1."',`Image2`='".$image2."',`Image3`='".$image3."',`Image4`='".$image4."' WHERE `PropertyID` = '".$propertyID."'";
                     
                     if(mysqli_query($con,$sql)){
-                      echo "<p align='center' style='color: red; font-weight: bold;'>Land details Uploaded Successfully.</p>";
+                      echo "<p align='center' style='color: red; font-weight: bold;'>Land details Updated Successfully.</p>";
 
                     }else{
-                      echo "<p align='center' style='color: red; font-weight: bold;'>Could not upload. Please check the form again.</p>";
+                      echo "<p align='center' style='color: red; font-weight: bold;'>Could not Update. Please check the form again.</p>";
 
                     }
               }

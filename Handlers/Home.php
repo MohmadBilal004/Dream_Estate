@@ -122,7 +122,7 @@ if(!isset($_SESSION["userName"]))
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="http://127.0.0.1:5000">
             <span class="icon"><i class="fas fa-desktop"></i></span>
             <span class="item">Price Prediction</span>
           </a>

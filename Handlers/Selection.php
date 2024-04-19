@@ -103,7 +103,7 @@ if(!isset($_SESSION["userName"]))
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="http://127.0.0.1:5000">
                 <span class="icon"><i class="fas fa-desktop"></i></span>
                 <span class="item">Price Prediction</span>
               </a>
@@ -128,7 +128,7 @@ if(!isset($_SESSION["userName"]))
             </li>
     
             <li>
-              <a href="#">
+              <a href="UserProfile.php">
                 <span class="icon"><i class="fas fa-user"></i></span>
                 <span class="item">User Profile</span>
               </a>

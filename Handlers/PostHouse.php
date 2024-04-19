@@ -16,7 +16,7 @@ $user_id = $_SESSION["userName"];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Post House for sale</title>
+  <title>Update House Details</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -32,7 +32,10 @@ $user_id = $_SESSION["userName"];
 </head>
 
 <body>
- 
+<script>
+  // Print user ID to the console
+  console.log(<?php echo json_encode($_SESSION["userName"]); ?>);
+</script>
  
   <header>
     <div class = "move-right">
@@ -93,7 +96,7 @@ $user_id = $_SESSION["userName"];
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="http://127.0.0.1:5000">
             <span class="icon"><i class="fas fa-desktop"></i></span>
             <span class="item">Price Prediction</span>
           </a>
@@ -118,7 +121,7 @@ $user_id = $_SESSION["userName"];
         </li>
 
         <li>
-          <a href="#">
+          <a href="UserProfile.php">
             <span class="icon"><i class="fas fa-user"></i></span>
             <span class="item">User Profile</span>
           </a>
@@ -142,10 +145,10 @@ $user_id = $_SESSION["userName"];
 
     <label id = "lblHouseType" for="txtHouseType">Select House Type:</label>
     <select id="txtHouseType" name="txtHouseType">
-      <option value="Single-Family Homes">Single-Family Home</option>
-      <option value="Apartments">Apartment</option>
-      <option value="Mansions">Mansion</option>
-      <option value="Colonial Style Homes">Colonial Style Home</option>
+      <option value="Single-Family Home">Single-Family Home</option>
+      <option value="Apartment">Apartment</option>
+      <option value="Mansion">Mansion</option>
+      <option value="Colonial Style Home">Colonial Style Home</option>
     </select>
 
     <label for="txtAddress">Address</label>
@@ -158,14 +161,14 @@ $user_id = $_SESSION["userName"];
           <td> 
             <label id="lblCity" for="txtCity">Select the City</label>
             <select id="txtCity" name="txtCity">
-              <option value="Colombo">Colombo</option>
-              <option value="Negombo">Negombo</option>
+            <option value="District_Colombo">Colombo</option>
+            <option value="District_Gampaha">Gampaha</option>
             </select>
           </td>
           <td>
             <label id="lblLocalArea" for="txtLocalArea">Select the Local Area</label>
             <select id="txtLocalArea" name="txtLocalArea">
-              <option value="Colombo 1 Fort">Colombo 1 Fort (Kotuwa)</option>
+              <!-- <option value="Colombo 1 Fort">Colombo 1 Fort (Kotuwa)</option>
               <option value="Colombo 2 Slave Island">Colombo 2 Slave Island</option>
               <option value="Colombo 3">Colombo 3 Colpetty (Kollupitiya)</option>
               <option value="Colombo 4">Colombo 4 (Bambalapitiya)</option>
@@ -179,7 +182,7 @@ $user_id = $_SESSION["userName"];
               <option value="Colombo 12">Colombo 12 Hulftsdorp (Aluthkade)</option>
               <option value="Colombo 13">Colombo 13: Bloemendhal (Kotahena & Kochchikade)</option>
               <option value="Colombo 14">Colombo 14 (Grandpass)</option>
-              <option value="Colombo 15">Colombo 15 (Mattakkuliya, Modara, Mutwal, Madampitiya)</option>
+              <option value="Colombo 15">Colombo 15 (Mattakkuliya, Modara, Mutwal, Madampitiya)</option> -->
               <!-- Add more local areas as needed -->
             </select>
           </td>
@@ -211,8 +214,12 @@ $user_id = $_SESSION["userName"];
           <td> <label  id = "lblLandSize" for="txtLandSize">Land Size</label>
             <input type="number" placeholder="Area of the Land" id="txtLandSize" name = "txtLandSize"></td>
         
-        <td><label id = "lblUnit" for="txtUnit">Units</label>
-          <input type="number" placeholder="Unit measured" id="txtUnit" name = "txtUnit"></td>
+        <td>
+        <label id = "lblUnit" for="txtUnit">Units</label>
+          <select id="txtUnit" name="txtUnit">
+              <option value="Perches">Perches</option>
+              <option value="Acres">Acres</option>
+          </select>
         </tr>
   
   
@@ -308,7 +315,7 @@ $user_id = $_SESSION["userName"];
 	                	die("Sorry !!! we are facing technical issue"); 
 	                }
 
-                    $sql = "INSERT INTO `housetbl`(`HouseID`, `Title`, `PropertyType`, `Address`, `City`, `LocalArea`, `YearBuilt`, `YearRenovated`, `BedroomCount`, `BathroomCount`, `LandSize`, `Unit`, `HouseSize`, `FloorCount`, `Description`, `Price`, `negotiable`, `email`, `Image1`, `Image2`, `Image3`, `Image4`) VALUES 
+                    $sql = "INSERT INTO `housetbl`(`PropertyID`, `Title`, `PropertyType`, `Address`, `City`, `LocalArea`, `YearBuilt`, `YearRenovated`, `BedroomCount`, `BathroomCount`, `LandSize`, `Unit`, `HouseSize`, `FloorCount`, `Description`, `Price`, `negotiable`, `email`, `Image1`, `Image2`, `Image3`, `Image4`) VALUES 
                     (NULL,'".$title."','".$houseType."','".$address."','".$city."','".$localArea."','".$yearBuilt."','".$yearRenovated."','".$bedroomCount."','".$bathroomCount."','".$landSize."','".$unit."','".$houseSize."','".$floorCount."','".$description."','".$price."','".$negotiable."','".$user_id."','".$image1."','".$image2."','".$image3."','".$image4."')";
                     
                     if(mysqli_query($con,$sql)){
@@ -322,7 +329,6 @@ $user_id = $_SESSION["userName"];
 ?>
   </form>
 
- 
   </div>
   <script>
    function previewImages(inputId, previewContainerId) {
@@ -373,6 +379,77 @@ $user_id = $_SESSION["userName"];
 }
 
 </script>
+
+<script>
+    document.getElementById('txtCity').addEventListener('change', function () {
+      var townSelect = document.getElementById('txtLocalArea');
+
+      // Code to update the options for txtTown will go here
+      if (this.value === 'District_Gampaha') {
+        townSelect.options.length = 0; // Clear existing options
+        townSelect.options.add(new Option('Delgoda', 'Town_ Delgoda'));
+        townSelect.options.add(new Option('Divulapitiya', 'Town_ Divulapitiya'));
+        townSelect.options.add(new Option('Gampaha', 'Town_ Gampaha City'));
+        townSelect.options.add(new Option('Ganemulla', 'Town_ Ganemulla'));
+        townSelect.options.add(new Option('Ja-Ela', 'Town_ Ja-Ela'));
+        townSelect.options.add(new Option('Kadawatha', 'Town_ Kadawatha'));
+        townSelect.options.add(new Option('Katunayake', 'Town_ Katunayake'));
+        townSelect.options.add(new Option('Kelaniya', 'Town_ Kelaniya'));
+        townSelect.options.add(new Option('Kesbewa', 'Town_ Kesbewa'));
+        townSelect.options.add(new Option('Kiribathgoda', 'Town_ Kiribathgoda'));
+        townSelect.options.add(new Option('Minuwangoda', 'Town_ Minuwangoda'));
+        townSelect.options.add(new Option('Mirigama', 'Town_ Mirigama'));
+        townSelect.options.add(new Option('Negombo', 'Town_ Negombo'));
+        townSelect.options.add(new Option('Ragama', 'Town_ Ragama'));
+        townSelect.options.add(new Option('Nittambuwa', 'Town_ Nittambuwa'));
+        townSelect.options.add(new Option('Seeduwa', 'Town_ Seeduwa'));
+        townSelect.options.add(new Option('Veyangoda', 'Town_ Veyangoda'));
+        townSelect.options.add(new Option('Wattala', 'Town_ Wattala'));
+        // Add more options as needed
+      } else if (this.value === 'District_Colombo') {
+        townSelect.options.length = 0; // Clear existing options
+        townSelect.options.add(new Option('Colombo 1 Fort (Kotuwa)', 'Town_ Colombo 1'));
+        townSelect.options.add(new Option('Colombo 2 Slave Island', 'Town_ Colombo 2'));
+        townSelect.options.add(new Option('Colombo 3 Colpetty (Kollupitiya)', 'Town_ Colombo 3'));
+        townSelect.options.add(new Option('Colombo 4 (Bambalapitiya)', 'Town_ Colombo 4'));
+        townSelect.options.add(new Option('Colombo 5 (Narahenpita)', 'Town_ Colombo 5'));
+        townSelect.options.add(new Option('Colombo 6 (Wellawatta)', 'Town_ Colombo 6'));
+        townSelect.options.add(new Option('Colombo 7 Cinnamon Garden (Kuruwita Uyana)', 'Town_ Colombo 7'));
+        townSelect.options.add(new Option('Colombo 8 (Borella)', 'Town_ Colombo 8'));
+        townSelect.options.add(new Option('Colombo 9 (Dematagoda)', 'Town_ Colombo 9'));
+        townSelect.options.add(new Option('Colombo 10 (Maradana)', 'Town_ Colombo 10'));
+        townSelect.options.add(new Option('Colombo 11 Pettah (Pitakotuwa)', 'Town_ Colombo 11'));
+        townSelect.options.add(new Option('Colombo 12 Hulftsdorp (Aluthkade)', 'Town_ Colombo 12'));
+        townSelect.options.add(new Option('Colombo 13: Bloemendhal (Kotahena & Kochchikade)', 'Town_ Colombo 13'));
+        townSelect.options.add(new Option('Colombo 14 (Grandpass)', 'Town_ Colombo 14'));
+        townSelect.options.add(new Option('Colombo 15 (Mattakkuliya)', 'Town_ Colombo 15'));
+        townSelect.options.add(new Option('Godagama', 'Town_ Godagama'));
+        townSelect.options.add(new Option('Hanwella', 'Town_ Hanwella'));
+        townSelect.options.add(new Option('Homagama', 'Town_ Homagama'));
+        townSelect.options.add(new Option('Kaduwela', 'Town_ Kaduwela'));
+        townSelect.options.add(new Option('Homagama', 'Town_ Homagama'));
+        townSelect.options.add(new Option('Kohuwala', 'Town_ Kohuwala'));
+        townSelect.options.add(new Option('Kolonnawa', 'Town_ Kolonnawa'));
+        townSelect.options.add(new Option('Kottawa', 'Town_ Kottawa'));
+        townSelect.options.add(new Option('Kotte', 'Town_ Kotte'));
+        townSelect.options.add(new Option('Maharagama', 'Town_ Maharagama'));
+        townSelect.options.add(new Option('Malabe', 'Town_ Malabe'));
+        townSelect.options.add(new Option('Meegoda', 'Town_ Meegoda'));
+        townSelect.options.add(new Option('Moratuwa', 'Town_ Moratuwa'));
+        townSelect.options.add(new Option('Mount Lavinia', 'Town_ Mount Lavinia'));
+        townSelect.options.add(new Option('Nawala', 'Town_ Nawala'));
+        townSelect.options.add(new Option('Nugegoda', 'Town_ Nugegoda'));
+        townSelect.options.add(new Option('Padukka', 'Town_ Padukka'));
+        townSelect.options.add(new Option('Pannipitiya', 'Town_ Pannipitiya'));
+        townSelect.options.add(new Option('Rajagiriya', 'Town_ Rajagiriya'));
+        townSelect.options.add(new Option('Ratmalana', 'Town_ Ratmalana'));
+        townSelect.options.add(new Option('Piliyandala', 'Town_ Piliyandala'));
+        townSelect.options.add(new Option('Talawatugoda', 'Town_ Talawatugoda'));
+        townSelect.options.add(new Option('Wellampitiya', 'Town_ Wellampitiya'));
+      }
+      // Add more conditions for other districts as needed
+    });
+  </script>
 </body>
 
 

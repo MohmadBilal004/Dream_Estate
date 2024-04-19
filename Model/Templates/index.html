@@ -121,7 +121,9 @@
         <input type="number" id = "txtHouseSize" name = "txtHouseSize" placeholder="Size of the house in sqft" >
   
  
-    <button type="submit" id="btnPost" name="btnPost" value="Predict Price">Predict Price</button>
+        <button type="submit" id="btnPost" name="btnPost" value="Predict Price">Predict Price</button>
+        <div id="predictionAlert"></div>
+
     {% if pred_value != 0 %}
     <p align= "center" class= "prediction">
      Estimated Price: LKR. {{pred_value}}
@@ -136,6 +138,7 @@
   
  
   </div>
+
   <script>
     document.getElementById('txtDistrict').addEventListener('change', function () {
       var townSelect = document.getElementById('txtTown');
@@ -206,6 +209,40 @@
       // Add more conditions for other districts as needed
     });
   </script>
+
+  <script>
+    document.getElementById('pricePredictionForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+      showAlert();
+    });
+
+    function showAlert() {
+      var houseType = document.getElementById('txtHouseType').value;
+      var district = document.getElementById('txtDistrict').value;
+      var town = document.getElementById('txtTown').value;
+      var bedrooms = document.getElementById('Beds').value;
+      var bathrooms = document.getElementById('Baths').value;
+      var landSize = document.getElementById('txtLandsize').value;
+      var houseSize = document.getElementById('txtHouseSize').value;
+
+      var predValue = '{{ pred_value }}';
+      var errorValue = '{{ error_value }}';
+
+      var message = "Price Prediction Form Values:\n\n";
+      message += "House Type: " + houseType + "\n";
+      message += "District: " + district + "\n";
+      message += "Town: " + town + "\n";
+      message += "Bedrooms: " + bedrooms + "\n";
+      message += "Bathrooms: " + bathrooms + "\n";
+      message += "Land Size: " + landSize + " perches\n";
+      message += "House Size: " + houseSize + " sqft\n";
+      message += "Estimated Price: " + predValue + "\n";
+      message += "Error Message: " + errorValue + "\n";
+
+      alert(message);
+    }
+  </script>
+  
 </body>
 
 </html>

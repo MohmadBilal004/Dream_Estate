@@ -22,7 +22,7 @@ integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8t
 
 
     <link rel="stylesheet" href="../CSS/navigation.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/ListHouse.css" type="text/css">
+    <link rel="stylesheet" href="../CSS/Dashboard.css" type="text/css">
 
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 
@@ -95,13 +95,13 @@ integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8t
               </a>
             </li>
             <li>
-              <a href="http://127.0.0.1:5000">
+              <a href="#">
                 <span class="icon"><i class="fas fa-desktop"></i></span>
                 <span class="item">Price Prediction</span>
               </a>
             </li>
             <li>
-              <a href="ListHouse.php" class="active">
+              <a href="ListHouse.php">
                 <span class="icon"><i class="fas fa-list"></i></span>
                 <span class="item">List Properties</span>
               </a>
@@ -121,7 +121,7 @@ integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8t
     
             <li>
               <a href="UserProfile.php">
-                <span class="icon"><i class="fas fa-user"></i></span>
+                <span class="icon"><i class="fas fa-user" class="active"></i></span>
                 <span class="item">User Profile</span>
               </a>
             </li>
@@ -138,18 +138,20 @@ integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8t
             <?php
             $con = mysqli_connect("localhost","root","","predictpricer");
 
+            $user_id = $_SESSION["userName"];
+
             if(!$con) {
                 die("Cannot connect with DB server"); 
             }
 
-            $sqlHouse = "SELECT * FROM `housetbl`";
+            $sqlHouse = "SELECT * FROM `housetbl` where email = '$user_id'";
             $resultHouse = mysqli_query($con, $sqlHouse);
 
             if(!$resultHouse) {
                 die("Error in SQL query for housetbl: " . mysqli_error($con));
             }
 
-            $sqlLand = "SELECT * FROM `landtbl`";
+            $sqlLand = "SELECT * FROM `landtbl`where email = '$user_id'";
             $resultLand = mysqli_query($con, $sqlLand);
 
             if(!$resultLand) {
@@ -177,8 +179,16 @@ integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8t
                                 <p>City: ".$row["City"]."</p> 
                                 <p>Local Area: ".$row["LocalArea"]."</p>
                                 <p>Price: ".$row["Price"]."</p>
-                               
+                                <table>
+                                <tbody>
+                                <tr>
+                                <td><a class='btn' href='UpdateHouse.php?id=".$row["PropertyID"]."&type=".$row["PropertyType"]."'><p>Edit</p></a></td>
+                                <td><a class='btn' href='DeleteProperty.php?id=".$row["PropertyID"]."&type=".$row["PropertyType"]."'><p>Delete</p></a></td>
+                                </tr>
+                                </tbody>
+                                </table>
                             </div>
+                            
                         </div>
                     </div>
                 ";

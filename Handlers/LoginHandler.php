@@ -21,7 +21,7 @@ if (isset($_POST["loginbtn"])) {
             header('Location:Home.php');
        
     } else {
-        header('Location:../Validation.html');
+        header('Location:../ValidationPage.html');
         echo "Please enter correct username and password";
     }
 }
